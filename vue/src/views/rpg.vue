@@ -2,7 +2,6 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 const personagens = ref([])
 
@@ -40,7 +39,7 @@ const criarPersonagem = async () => {
   try {
     const { data } = await axios.post('/api/personagem', novoPersonagem.value)
     personagens.value.push(data)
-    limparFormulario()
+    window.location.reload();
   } catch (error) {
     errorMsg.value = 'Erro ao criar personagem.'
     console.error(error)
@@ -49,7 +48,7 @@ const criarPersonagem = async () => {
 
 const atualizarPersonagem = async (personagem) => {
   try {
-    const atualizado = { ...personagem, nivel: personagem.nivel + 1, xp: personagem.xp + 100}
+    const atualizado = { ...personagem, nivel: personagem.nivel + 1, xp: personagem.xp + 100 }
     await axios.put(`/api/personagem/${personagem.id}`, atualizado)
     carregarPersonagens()
   } catch (error) {
@@ -103,19 +102,11 @@ onMounted(carregarPersonagens)
       <h2 class="text-2xl font-semibold text-gray-700 mb-4">Criar Novo Personagem</h2>
       <div class="mb-4">
         <label for="nome" class="block text-gray-600 mb-1">Nome</label>
-        <input
-          id="nome"
-          type="text"
-          v-model="novoPersonagem.nome"
-          placeholder="Digite o nome do personagem"
-          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-        />
+        <input id="nome" type="text" v-model="novoPersonagem.nome" placeholder="Digite o nome do personagem"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
       </div>
       <!-- Você pode adicionar outros campos do formulário conforme necessário -->
-      <button
-        @click="criarPersonagem"
-        class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
-      >
+      <button @click="criarPersonagem" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
         Criar Personagem
       </button>
     </div>
@@ -124,11 +115,8 @@ onMounted(carregarPersonagens)
     <div class="bg-white shadow rounded p-6">
       <h2 class="text-2xl font-semibold text-gray-700 mb-4">Lista de Personagens</h2>
       <ul v-if="personagens.length">
-        <li
-          v-for="personagem in personagens"
-          :key="personagem.id"
-          class="border-b border-gray-200 py-4 flex flex-col md:flex-row md:items-center md:justify-between"
-        >
+        <li v-for="personagem in personagens" :key="personagem.id"
+          class="border-b border-gray-200 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
           <div>
             <h3 class="text-xl font-bold text-gray-800">{{ personagem.nome }}</h3>
             <p class="text-gray-600">Nível: {{ personagem.nivel }}</p>
@@ -138,16 +126,12 @@ onMounted(carregarPersonagens)
             <p class="text-gray-600">Moedas: {{ personagem.moedas }} | XP: {{ personagem.xp }}</p>
           </div>
           <div class="mt-4 md:mt-0 flex space-x-2">
-            <button
-              @click="atualizarPersonagem(personagem)"
-              class="bg-green-500 hover:bg-green-600 text-white py-2 px-3 rounded"
-            >
+            <button @click="atualizarPersonagem(personagem)"
+              class="bg-green-500 hover:bg-green-600 text-white py-2 px-3 rounded">
               + Nível
             </button>
-            <button
-              @click="deletarPersonagem(personagem.id)"
-              class="bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded"
-            >
+            <button @click="deletarPersonagem(personagem.id)"
+              class="bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded">
               Excluir
             </button>
           </div>

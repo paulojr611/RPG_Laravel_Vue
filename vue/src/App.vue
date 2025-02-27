@@ -20,6 +20,10 @@
 import { RouterView } from 'vue-router';
 import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar.vue';
+import axios from 'axios'
+axios.defaults.baseURL = 'http://127.0.0.1:8000'
+
+
 </script>
 
 <style scoped>
