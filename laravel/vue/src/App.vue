@@ -23,7 +23,6 @@ import Sidebar from './components/Sidebar.vue';
 </script>
 
 <style scoped>
-/* Certifique-se que o body não tenha padding ou margens extras */
 body {
   margin: 0;
   padding: 0;

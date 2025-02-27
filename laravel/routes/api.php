@@ -25,4 +25,10 @@ Route::post('/counter/increment', [CounterController::class, 'increment']);
 Route::post('/counter/decrement', [counterController::class, 'decrement']);
 Route::post('/counter/decrementbig', [counterController::class, 'decrementbig']);
 
-Route::post('/personagem',[PersonagemController::class,'store']);
+Route::prefix('personagem')->group(function () {
+    Route::get('/', [PersonagemController::class, 'index']); // Listar todos os personagens
+    Route::post('/', [PersonagemController::class, 'store']); // Criar um personagem
+    Route::get('/{id}', [PersonagemController::class, 'show']); // Mostrar um personagem específico
+    Route::put('/{id}', [PersonagemController::class, 'update']); // Atualizar um personagem
+    Route::delete('/{id}', [PersonagemController::class, 'destroy']); // Deletar um personagem
+});

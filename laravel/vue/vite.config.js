@@ -1,7 +1,12 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [laravel(['resources/js/app.js'])],
-    root: 'resources', // ou 'public' dependendo da sua estrutura
-});
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': '/src',  // Alias para a pasta src
+    }
+  }
+})
