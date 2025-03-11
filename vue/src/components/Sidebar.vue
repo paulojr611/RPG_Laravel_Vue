@@ -16,7 +16,7 @@
 import { AcademicCapIcon, BellIcon, BellSnoozeIcon } from '@heroicons/vue/24/solid';
 
 const menuItems = [
-  { label: 'RPG', icon: AcademicCapIcon, route: '/rpg' },
+  //{ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' },
   { label: 'Jaburu', icon: BellSnoozeIcon, route: '/' },
   { label: 'Commit do dia', icon: BellIcon, route: '/' }
 ];
