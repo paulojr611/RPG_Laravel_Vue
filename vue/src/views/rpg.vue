@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { sidebar } from '../stores/menuSidebar';
 
+const menuStore = sidebar();
 
 const personagens = ref([])
 
