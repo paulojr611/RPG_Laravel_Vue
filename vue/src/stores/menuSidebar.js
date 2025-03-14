@@ -6,7 +6,7 @@ export const sidebar = defineStore('menu', {
     menuItems: [
       { label: 'RPG', icon: AcademicCapIcon, route: '/rpg' },
       { label: 'Jaburu', icon: BellSnoozeIcon, route: '/' },
-     // { label: 'Commit do dia', icon: BellIcon, route: '/' } 
+      { label: 'Commit do dia', icon: BellIcon, route: '/' } 
     ]
   }),
   actions: {
@@ -16,11 +16,8 @@ export const sidebar = defineStore('menu', {
     removeMenuItem(label) {
       this.menuItems = this.menuItems.filter(item => item.label !== label);
     },
-    updateMenuItem(oldLabel, newItem) {
-      const index = this.menuItems.findIndex(item => item.label === oldLabel);
-      if (index !== -1) {
-        this.menuItems[index] = newItem;
-      }
+    removeAllMenuItems() {
+      this.menuItems = []; 
     }
   }
 });
