@@ -59,7 +59,7 @@ const atualizarPersonagem = async (personagem) => {
   }
 }
 
-// Deletar personagem (DELETE /api/personagem/{id})
+// Deletar personagem
 const deletarPersonagem = async (id) => {
   try {
     await axios.delete(`/api/personagem/${id}`)
@@ -107,7 +107,6 @@ onMounted(carregarPersonagens)
         <input id="nome" type="text" v-model="novoPersonagem.nome" placeholder="Digite o nome do personagem"
           class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
       </div>
-      <!-- Você pode adicionar outros campos do formulário conforme necessário -->
       <button @click="criarPersonagem" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
         Criar Personagem
       </button>
