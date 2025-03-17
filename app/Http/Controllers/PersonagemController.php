@@ -88,7 +88,7 @@ class PersonagemController extends Controller
     }
 
     /**
-     * Deleta um personagem.
+     * Deleta um personagem.    
      */
     public function destroy($id)
     {
