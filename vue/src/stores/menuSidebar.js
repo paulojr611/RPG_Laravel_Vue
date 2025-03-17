@@ -6,7 +6,7 @@ export const sidebar = defineStore('menu', {
     menuItems: [
       { label: 'RPG', icon: AcademicCapIcon, route: '/rpg' },
       { label: 'Jaburu', icon: BellSnoozeIcon, route: '/' },
-      { label: 'Commit do dia', icon: BellIcon, route: '/' } 
+    //  { label: 'Commit do dia', icon: BellIcon, route: '/' } 
     ]
   }),
   actions: {
