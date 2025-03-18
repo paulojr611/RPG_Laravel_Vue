@@ -14,7 +14,6 @@ const removeSide = () => {
 const addRPG = () => {
   menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
   menuStore.addMenuItem({ label: 'Jaburu', icon: BellSnoozeIcon, route: '/' });
-  menuStore.addMenuItem({ label: 'Commit do dia', icon: BellIcon, route: '/' });
 };
 
 const count = ref(0);
@@ -49,6 +48,9 @@ onMounted(async () => {
 });
 onMounted(() => {
   removeSide();
+});
+onMounted(() => {
+  addRPG();
 });
 </script>
 

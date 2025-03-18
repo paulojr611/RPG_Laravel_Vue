@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import count from '../views/Count.vue';
 import rpg from '../views/rpg.vue';
+import criarpersonagem from '../views/CriarPersonagem.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'count',
-    component: count,
+    name: 'Nascimento',
+    component: criarpersonagem,
   },
   {
     path: '/rpg',
@@ -14,6 +15,12 @@ const routes = [
     component: rpg,
     meta: { requiresClick: true },
   },
+  {
+    path: '/count',
+    name: 'count',
+    component: count,
+  },
+
 ];
 
 const router = createRouter({

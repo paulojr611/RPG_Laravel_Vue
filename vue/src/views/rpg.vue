@@ -1,9 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import { sidebar } from '../stores/menuSidebar';
-import { AcademicCapIcon, BellSnoozeIcon, BellIcon } from '@heroicons/vue/24/solid';
+import useGlobalImports from '@/composables/globalImports';
 
+const { ref, onMounted, axios, useRouter, sidebar, AcademicCapIcon, BellSnoozeIcon, BellIcon} = useGlobalImports();
 
 const menuStore = sidebar();
 
@@ -14,12 +12,8 @@ const removeSide = () => {
 };
 
 const addRPG = () => {
-  menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
-  menuStore.addMenuItem({ label: 'Jaburu', icon: BellSnoozeIcon, route: '/' });
   menuStore.addMenuItem({ label: 'Commit do dia', icon: BellIcon, route: '/' });
 };
-
-
 
 
 const novoPersonagem = ref({
@@ -105,6 +99,9 @@ const limparFormulario = () => {
 onMounted(carregarPersonagens)
 onMounted(() => {
   removeSide();
+});
+onMounted(() => {
+  addRPG();
 });
 </script>
 
