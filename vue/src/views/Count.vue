@@ -2,13 +2,23 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { sidebar } from '../stores/menuSidebar';
+import { AcademicCapIcon, BellSnoozeIcon, BellIcon } from '@heroicons/vue/24/solid';
+
+const menuStore = sidebar();
+
+const removeSide = () => {
+  menuStore.removeAllMenuItems();
+};
+
+const addRPG = () => {
+  menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
+  menuStore.addMenuItem({ label: 'Jaburu', icon: BellSnoozeIcon, route: '/' });
+  menuStore.addMenuItem({ label: 'Commit do dia', icon: BellIcon, route: '/' });
+};
 
 const count = ref(0);
 
-onMounted(async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/counter');
-  count.value = response.data.count;
-});
 
 const incrementCount = async () => {
   const response = await axios.post('http://127.0.0.1:8000/api/counter/increment');
@@ -32,6 +42,14 @@ function goToOtherView() {
   router.push('/rpg'); 
 }
 
+
+onMounted(async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/counter');
+  count.value = response.data.count;
+});
+onMounted(() => {
+  removeSide();
+});
 </script>
 
 <template>
@@ -65,5 +83,9 @@ function goToOtherView() {
         O valor do contador é armazenado no banco de dados.
       </p>
     </div>
+    <button @click="addRPG"
+    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+    >Salve
+    </button>
   </div>
 </template>
