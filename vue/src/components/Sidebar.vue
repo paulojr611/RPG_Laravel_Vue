@@ -1,7 +1,13 @@
+<script setup>
+import { sidebar } from '@/stores/menuSidebar';
+
+const menuStore = sidebar();
+</script>
+
 <template>
   <nav class="flex flex-col min-w-[200px] w-64 h-full bg-indigo-600 text-white py-4 px-2">
     <router-link
-      v-for="item in menuItems"
+      v-for="item in menuStore.menuItems"
       :key="item.label"
       :to="item.route"
       class="flex items-center p-2 rounded transition-colors hover:bg-black/30 cursor-pointer"
@@ -11,13 +17,3 @@
     </router-link>
   </nav>
 </template>
-
-<script setup>
-import { AcademicCapIcon, BellIcon, BellSnoozeIcon } from '@heroicons/vue/24/solid';
-
-const menuItems = [
-  { label: 'RPG', icon: AcademicCapIcon, route: '/rpg' },
-  { label: 'Jaburu', icon: BellSnoozeIcon, route: '/' },
-  //{ label: 'Commit do dia', icon: BellIcon, route: '/' }
-];
-</script>

@@ -1,9 +1,26 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { sidebar } from '../stores/menuSidebar';
+import { AcademicCapIcon, BellSnoozeIcon, BellIcon } from '@heroicons/vue/24/solid';
 
+
+const menuStore = sidebar();
 
 const personagens = ref([])
+
+const removeSide = () => {
+  menuStore.removeAllMenuItems();
+};
+
+const addRPG = () => {
+  menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
+  menuStore.addMenuItem({ label: 'Jaburu', icon: BellSnoozeIcon, route: '/' });
+  menuStore.addMenuItem({ label: 'Commit do dia', icon: BellIcon, route: '/' });
+};
+
+
+
 
 const novoPersonagem = ref({
   nome: '',
@@ -57,7 +74,7 @@ const atualizarPersonagem = async (personagem) => {
   }
 }
 
-// Deletar personagem (DELETE /api/personagem/{id})
+// Deletar personagem
 const deletarPersonagem = async (id) => {
   try {
     await axios.delete(`/api/personagem/${id}`)
@@ -86,6 +103,9 @@ const limparFormulario = () => {
 
 // Carrega os personagens quando o componente é montado
 onMounted(carregarPersonagens)
+onMounted(() => {
+  removeSide();
+});
 </script>
 
 <template>
@@ -105,7 +125,6 @@ onMounted(carregarPersonagens)
         <input id="nome" type="text" v-model="novoPersonagem.nome" placeholder="Digite o nome do personagem"
           class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
       </div>
-      <!-- Você pode adicionar outros campos do formulário conforme necessário -->
       <button @click="criarPersonagem" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
         Criar Personagem
       </button>
@@ -141,9 +160,12 @@ onMounted(carregarPersonagens)
         Nenhum personagem encontrado.
       </p>
     </div>
+    <button @click="addRPG"
+    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+    >Salve
+    </button>
   </div>
 </template>
 
 <style scoped>
-/* Customizações adicionais, se necessário */
 </style>
