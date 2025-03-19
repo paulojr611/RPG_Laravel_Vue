@@ -11,7 +11,7 @@ const removeSide = () => {
   menuStore.removeAllMenuItems();
 };
 
-const addRPG = () => {
+const addSide = () => {
   menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
   menuStore.addMenuItem({ label: 'Jaburu', icon: BellSnoozeIcon, route: '/' });
 };
@@ -50,7 +50,7 @@ onMounted(() => {
   removeSide();
 });
 onMounted(() => {
-  addRPG();
+  addSide();
 });
 </script>
 
@@ -85,7 +85,7 @@ onMounted(() => {
         O valor do contador é armazenado no banco de dados.
       </p>
     </div>
-    <button @click="addRPG"
+    <button @click="addSide"
     class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
     >Salve
     </button>
