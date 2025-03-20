@@ -1,33 +1,19 @@
 <script setup>
 import useGlobalImports from '@/composables/globalImports';
 
-const { ref, onMounted, axios, useRouter, sidebar, AcademicCapIcon, BellSnoozeIcon, BellIcon} = useGlobalImports();
+const { ref, onMounted, axios, useRouter, sidebar,  UserIcon} = useGlobalImports();
 
 const menuStore = sidebar();
-
+const router = useRouter();
 const personagens = ref([])
 
 const removeSide = () => {
   menuStore.removeAllMenuItems();
 };
-
-const addRPG = () => {
-  menuStore.addMenuItem({ label: 'Commit do dia', icon: BellIcon, route: '/' });
+const addSide = () => {
+  menuStore.addMenuItem({ label: 'Status', icon: UserIcon , route: '/status' });
 };
 
-
-const novoPersonagem = ref({
-  nome: '',
-  vida: 10,
-  vidaMax: 10,
-  mana: 5,
-  manaMax: 5,
-  ca: 10,
-  DR: 0,
-  nivel: 1,
-  moedas: 0,
-  xp: 0
-})
 
 const errorMsg = ref(null)
 
@@ -35,27 +21,15 @@ const carregarPersonagens = async () => {
   try {
     const { data } = await axios.get('/api/personagem')
     personagens.value = data
+    if (data.length == 0) {
+      router.push('/'); 
+    }
   } catch (error) {
     errorMsg.value = 'Erro ao carregar personagens.'
     console.error(error)
   }
 }
 
-const criarPersonagem = async () => {
-  if (novoPersonagem.value.nome.trim() === '') {
-    alert('Digite um nome válido para o personagem.')
-    return
-  }
-
-  try {
-    const { data } = await axios.post('/api/personagem', novoPersonagem.value)
-    personagens.value.push(data)
-    window.location.reload();
-  } catch (error) {
-    errorMsg.value = 'Erro ao criar personagem.'
-    console.error(error)
-  }
-}
 
 const atualizarPersonagem = async (personagem) => {
   try {
@@ -79,52 +53,20 @@ const deletarPersonagem = async (id) => {
   }
 }
 
-// Limpar formulário após criação
-const limparFormulario = () => {
-  novoPersonagem.value = {
-    nome: '',
-    vida: 10,
-    vidaMax: 10,
-    mana: 5,
-    manaMax: 5,
-    ca: 10,
-    DR: 0,
-    nivel: 1,
-    moedas: 0,
-    xp: 0
-  }
-}
-
 // Carrega os personagens quando o componente é montado
 onMounted(carregarPersonagens)
 onMounted(() => {
   removeSide();
 });
 onMounted(() => {
-  addRPG();
+  addSide();
 });
 </script>
 
 <template>
   <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">RPG - Gerenciamento de Personagens</h1>
-
-    <!-- Exibir mensagem de erro -->
     <div v-if="errorMsg" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
       {{ errorMsg }}
-    </div>
-
-    <!-- Formulário para criar novo personagem -->
-    <div class="bg-white shadow rounded p-6 mb-8">
-      <h2 class="text-2xl font-semibold text-gray-700 mb-4">Criar Novo Personagem</h2>
-      <div class="mb-4">
-        <label for="nome" class="block text-gray-600 mb-1">Nome</label>
-        <input id="nome" type="text" v-model="novoPersonagem.nome" placeholder="Digite o nome do personagem"
-          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
-      </div>
-      <button @click="criarPersonagem" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-        Criar Personagem
-      </button>
     </div>
 
     <!-- Listagem dos personagens -->
@@ -157,10 +99,6 @@ onMounted(() => {
         Nenhum personagem encontrado.
       </p>
     </div>
-    <button @click="addRPG"
-    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
-    >Salve
-    </button>
   </div>
 </template>
 

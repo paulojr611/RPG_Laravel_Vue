@@ -2,7 +2,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { sidebar } from '../stores/menuSidebar';
-import { AcademicCapIcon, BellSnoozeIcon, BellIcon } from '@heroicons/vue/24/solid';
+import { UserIcon, AcademicCapIcon } from '@heroicons/vue/24/solid';
+import { setClickAccess } from '../router/router';
 
 export default function useGlobalImports() {
   return {
@@ -11,8 +12,8 @@ export default function useGlobalImports() {
     axios,
     useRouter,
     sidebar,
+    setClickAccess,
     AcademicCapIcon,
-    BellSnoozeIcon,
-    BellIcon,
+    UserIcon,
   };
 }
