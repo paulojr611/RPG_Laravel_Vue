@@ -17,14 +17,14 @@ const addSide = () => {
 
 const novoPersonagem = ref({
     nome: '',
-    vida: 10,
-    vidaMax: 10,
+    vida: 20,
+    vidaMax: 20,
     mana: 5,
     manaMax: 5,
     ca: 10,
     DR: 0,
     nivel: 1,
-    moedas: 0,
+    moedas: 100,
     xp: 0
 })
 

@@ -14,18 +14,6 @@ const addSide = () => {
   menuStore.addMenuItem({ label: 'Status', icon: UserIcon , route: '/status' });
 };
 
-const novoPersonagem = ref({
-  nome: '',
-  vida: 10,
-  vidaMax: 10,
-  mana: 5,
-  manaMax: 5,
-  ca: 10,
-  DR: 0,
-  nivel: 1,
-  moedas: 0,
-  xp: 0
-})
 
 const errorMsg = ref(null)
 
@@ -62,22 +50,6 @@ const deletarPersonagem = async (id) => {
   } catch (error) {
     errorMsg.value = 'Erro ao deletar personagem.'
     console.error(error)
-  }
-}
-
-// Limpar formulário após criação
-const limparFormulario = () => {
-  novoPersonagem.value = {
-    nome: '',
-    vida: 10,
-    vidaMax: 10,
-    mana: 5,
-    manaMax: 5,
-    ca: 10,
-    DR: 0,
-    nivel: 1,
-    moedas: 0,
-    xp: 0
   }
 }
 
