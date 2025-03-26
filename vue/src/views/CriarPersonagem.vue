@@ -12,7 +12,7 @@ const removeSide = () => {
     menuStore.removeAllMenuItems();
 };
 const addSide = () => {
-    // menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
+    //// menuStore.addMenuItem({ label: 'RPG', icon: AcademicCapIcon, route: '/rpg' });
 };
 
 const novoPersonagem = ref({
