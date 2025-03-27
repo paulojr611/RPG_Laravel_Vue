@@ -53,7 +53,7 @@ const deletarPersonagem = async (id) => {
   }
 }
 
-/// Carrega os personagens quando o componente é montado
+///Carrega os personagens quando o componente é montado
 onMounted(carregarPersonagens)
 onMounted(() => {
   removeSide();
