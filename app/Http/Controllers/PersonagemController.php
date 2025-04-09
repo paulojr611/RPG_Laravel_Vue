@@ -15,7 +15,7 @@ class PersonagemController extends Controller
         return response()->json(Personagem::all(), 200);
     }
 
-    // Cria um novo personagem.
+    // sCria um novo personagem.
 
     public function store(Request $request)
     {
